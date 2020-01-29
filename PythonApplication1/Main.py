@@ -12,7 +12,7 @@ import cv2 as cv
 import numpy as np
 import random as rand
 import statistics as stat
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 #initialise camera
 try:
@@ -20,7 +20,7 @@ try:
 except:
 	cam = "Failed"
 intCount = 0
-intPwdLength = 2256
+intPwdLength = 100
 strPassword = ""
 
 fast = cv.FastFeatureDetector_create()
@@ -70,7 +70,7 @@ for intCount in range(0, intPwdLength):
 		strPassword += str(chr(letter+1))
 	else:
 		strPassword += str(chr(letter))
-	cv.waitKey(5)
+	cv.waitKey(1)
 
 	arryPlotX[letter] += 1
 
