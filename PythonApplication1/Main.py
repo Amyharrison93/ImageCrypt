@@ -12,7 +12,9 @@ import cv2 as cv
 import numpy as np
 import random as rand
 import statistics as stat
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
+
+from datetime import datetime
 
 #initialise camera
 try:
@@ -20,7 +22,7 @@ try:
 except:
 	cam = "Failed"
 intCount = 0
-intPwdLength = 100
+intPwdLength = 1000
 strPassword = ""
 
 fast = cv.FastFeatureDetector_create()
@@ -32,10 +34,12 @@ arryPlotY = np.zeros(254-32)
 for i in range(0, 254-32):
 	arryPlotY[i] = i+32
 
+print(datetime.now())
+
 for intCount in range(0, intPwdLength):
 	#collect frame
 	ret, frame = cam.read()
-
+	frame = cv.resize(frame, (320, 480))
 	features = fast.detect(frame, None)
 
 	#split channels
@@ -52,11 +56,10 @@ for intCount in range(0, intPwdLength):
 		intCh0 = len(fast.detect(Ch0, None))
 		intCh1 = len(orb.detect(Ch1, None))
 		intCh2 = len(blob.detect(Ch2, None))
-
+		
 	#initialise seed
 	#				R					G					B
 	intSeed = int(intCh0) << 32 | int(intCh1) << 16 | int(intCh2) << 0
-	intSeed2 = int(intCh0) +		int(intCh1) +		int(intCh2)
 
 	#print(intSeed)
 	rand.seed(intSeed)
@@ -77,5 +80,9 @@ for intCount in range(0, intPwdLength):
 plt.bar(arryPlotY, arryPlotX)
 plt.show()
 
+print(arryPlotX)
+
 print(strPassword)
+
+print(datetime.now())
 
