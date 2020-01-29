@@ -7,10 +7,12 @@
 #		comp tested: 29/01/2020
 #		Author: AH
 #-----------------------------------------------------------------------
+import os
 import cv2 as cv
 import numpy as np
 import random as rand
 import statistics as stat
+import matplotlib.pyplot as plt 
 
 #initialise camera
 try:
@@ -18,12 +20,17 @@ try:
 except:
 	cam = "Failed"
 intCount = 0
-intPwdLength = 2000
+intPwdLength = 2256
 strPassword = ""
 
 fast = cv.FastFeatureDetector_create()
 orb = cv.ORB_create()
 blob = cv.SimpleBlobDetector_create()
+
+arryPlotX = np.zeros(254-32)
+arryPlotY = np.zeros(254-32)
+for i in range(0, 254-32):
+	arryPlotY[i] = i+32
 
 for intCount in range(0, intPwdLength):
 	#collect frame
@@ -49,15 +56,26 @@ for intCount in range(0, intPwdLength):
 	#initialise seed
 	#				R					G					B
 	intSeed = int(intCh0) << 32 | int(intCh1) << 16 | int(intCh2) << 0
-	print(intSeed)
+	intSeed2 = int(intCh0) +		int(intCh1) +		int(intCh2)
+
+	#print(intSeed)
 	rand.seed(intSeed)
 
 	#create random letter
-	letter = 32 + rand.randint(0,(254-32))
-	print(letter)
+	letter = rand.randint(32,(254-33))
+	#print(letter)
 	
 	#add letter to array 
-	strPassword += str(chr(letter))
+	if letter == 32:
+		strPassword += str(chr(letter+1))
+	else:
+		strPassword += str(chr(letter))
 	cv.waitKey(5)
 
+	arryPlotX[letter] += 1
+
+plt.plot(arryPlotX, arryPlotY)
+plt.show()
+
 print(strPassword)
+
