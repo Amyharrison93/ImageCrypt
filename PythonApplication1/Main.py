@@ -22,15 +22,15 @@ try:
 except:
 	cam = "Failed"
 intCount = 0
-intPwdLength = 1000
+intPwdLength = 4000
 strPassword = ""
 
 fast = cv.FastFeatureDetector_create()
 orb = cv.ORB_create()
 blob = cv.SimpleBlobDetector_create()
 
-arryPlotX = np.zeros(254-32)
-arryPlotY = np.zeros(254-32)
+arryPlotX = np.zeros(254)
+arryPlotY = np.zeros(254)
 for i in range(0, 254-32):
 	arryPlotY[i] = i+32
 
@@ -39,7 +39,7 @@ print(datetime.now())
 for intCount in range(0, intPwdLength):
 	#collect frame
 	ret, frame = cam.read()
-	frame = cv.resize(frame, (320, 480))
+	#frame = cv.resize(frame, (320, 480))
 	features = fast.detect(frame, None)
 
 	#split channels
@@ -62,10 +62,12 @@ for intCount in range(0, intPwdLength):
 	intSeed = int(intCh0) << 32 | int(intCh1) << 16 | int(intCh2) << 0
 
 	#print(intSeed)
-	rand.seed(intSeed)
+	#rand.seed(intSeed)
 
 	#create random letter
-	letter = rand.randint(32,(254-33))
+	#letter = rand.randint(32,(254-33))
+	
+	letter = (intSeed%254)
 	#print(letter)
 	
 	#add letter to array 
