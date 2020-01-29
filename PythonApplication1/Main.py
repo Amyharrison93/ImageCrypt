@@ -1,4 +1,12 @@
 
+#-----------------------------------------------------------------------
+#      	Image Cryptogrophy v0.2
+# 		Generates encryption keys from image data as seed
+# 		for increased random
+#		started: 28/01/2020 updated: 29/01/2020 
+#		comp tested: 29/01/2020
+#		Author: AH
+#-----------------------------------------------------------------------
 import cv2 as cv
 import numpy as np
 import random as rand
@@ -19,7 +27,6 @@ for intCount in range(0, intPwdLength):
 	ret, frame = cam.read()
 
 	features = fast.detect(frame, None)
-	print(features)
 
 	#split channels
 	Ch0 = frame[:,:, 0]
@@ -31,7 +38,7 @@ for intCount in range(0, intPwdLength):
 		intCh0 = np.mean(Ch0)
 		intCh1 = np.mean(Ch1)
 		intCh2 = np.mean(Ch2)
-	else:
+	else:		
 		intCh0 = len(fast.detect(Ch0, None))
 		intCh1 = len(fast.detect(Ch1, None))
 		intCh2 = len(fast.detect(Ch2, None))
