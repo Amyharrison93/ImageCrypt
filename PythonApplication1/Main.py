@@ -10,6 +10,7 @@
 import cv2 as cv
 import numpy as np
 import random as rand
+import statistics as stat
 
 #initialise camera
 try:
@@ -17,10 +18,12 @@ try:
 except:
 	cam = "Failed"
 intCount = 0
-intPwdLength = 20
+intPwdLength = 2000
 strPassword = ""
 
 fast = cv.FastFeatureDetector_create()
+orb = cv.ORB_create()
+blob = cv.SimpleBlobDetector_create()
 
 for intCount in range(0, intPwdLength):
 	#collect frame
@@ -40,16 +43,18 @@ for intCount in range(0, intPwdLength):
 		intCh2 = np.mean(Ch2)
 	else:		
 		intCh0 = len(fast.detect(Ch0, None))
-		intCh1 = len(fast.detect(Ch1, None))
-		intCh2 = len(fast.detect(Ch2, None))
+		intCh1 = len(orb.detect(Ch1, None))
+		intCh2 = len(blob.detect(Ch2, None))
 
 	#initialise seed
 	#				R					G					B
 	intSeed = int(intCh0) << 32 | int(intCh1) << 16 | int(intCh2) << 0
+	print(intSeed)
 	rand.seed(intSeed)
 
 	#create random letter
 	letter = 32 + rand.randint(0,(254-32))
+	print(letter)
 	
 	#add letter to array 
 	strPassword += str(chr(letter))
