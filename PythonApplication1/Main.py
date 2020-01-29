@@ -74,7 +74,7 @@ for intCount in range(0, intPwdLength):
 
 	arryPlotX[letter] += 1
 
-plt.plot(arryPlotX, arryPlotY)
+plt.bar(arryPlotY, arryPlotX)
 plt.show()
 
 print(strPassword)
