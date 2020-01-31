@@ -3,8 +3,8 @@
 #      	Image Cryptogrophy v0.2
 # 		Generates encryption keys from image data as seed
 # 		for increased random
-#		started: 28/01/2020 updated: 29/01/2020 
-#		comp tested: 29/01/2020
+#		started: 28/01/2020 updated: 31/01/2020 
+#		comp tested: 31/01/2020
 #		Author: AH
 #-----------------------------------------------------------------------
 import numpy as np
@@ -24,16 +24,26 @@ except:
 	cam = "Failed"
 	
 intCount = 0
-intPwdLength = 32*100
+intPwdLength = 32*10
+
 strPassword = ""
+strFileName = "./Results/Result{0}.png".format(datetime.now())
+strFileName = strFileName.replace(":", "")
+strFileName = strFileName.replace(" ", "")
+print(strFileName)
 
 fast = FastFeatureDetector_create()
 orb = ORB_create()
 blob = SimpleBlobDetector_create()
 
-arryPlotX = np.zeros(254)
-arryPlotY = np.zeros(254)
-for i in range(0, 254):
+arryPlotX = np.zeros(126)
+arryPlotY = np.zeros(126)
+
+arryFastStdDev = np.zeros(intPwdLength)
+arryOrbStdDev = np.zeros(intPwdLength)
+arryBlobStdDev = np.zeros(intPwdLength)
+
+for i in range(0, 126):
 	arryPlotY[i] = i
 
 print(datetime.now())
@@ -63,7 +73,7 @@ for intCount in range(0, intPwdLength):
 	#				R					G					B
 	intSeed = int(intCh0) << 32 | int(intCh1) << 16 | int(intCh2) << 0
 	
-	letter = (intSeed%254)
+	letter = 32 + ((intSeed%126) - 32)
 	#print(letter)
 	
 	#add letter to array 
@@ -71,14 +81,26 @@ for intCount in range(0, intPwdLength):
 	waitKey(1)
 
 	arryPlotX[letter] += 1
+	arryFastStdDev[intCount] = intCh0
+	arryOrbStdDev[intCount] = intCh1
+	arryBlobStdDev[intCount] = intCh2
 	
 print(datetime.now())
 
+flCh0Deviation = np.std(arryFastStdDev)
+flCh1Deviation = np.std(arryOrbStdDev)
+flCh2Deviation = np.std(arryBlobStdDev)
+
 plt.bar(arryPlotY, arryPlotX)
+plt.ylabel('Number of occurences')
+plt.xlabel('ASCII character')
+plt.title(
+	"Std Deviation \n ch0: {0} \n ch1: {1} \n ch2: {2}"
+	.format(flCh0Deviation, flCh1Deviation, flCh2Deviation))
+plt.savefig(strFileName)
 plt.show()
 
-print(arryPlotX)
 
-#print(strPassword)
+print(strPassword)
 
 
