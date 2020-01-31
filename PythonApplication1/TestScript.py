@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 #-----------------------------------------------------------------------
 #      	Image Cryptogrophy v0.2
 # 		Generates encryption keys from image data as seed

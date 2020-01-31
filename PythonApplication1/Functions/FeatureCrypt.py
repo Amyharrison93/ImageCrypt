@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 #-----------------------------------------------------------------------
 #      	Image feature Cryptogrophy v0.1
 # 		Generates encryption keys from image data as seed
@@ -5,12 +8,11 @@
 #		inputs:
 #			intLength is the length of the cryptokey, standard length is 32
 #			intCamLoc is the camera to use, default is 0
-#		started: 31/01/2020 
+#		started: 31/01/2020 updated:
 #		comp tested: 31/01/2020
 #		Author: AH
 #-----------------------------------------------------------------------
 import numpy as np
-import matplotlib.pyplot as plt 
 
 from datetime import datetime
 
