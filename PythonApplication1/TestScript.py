@@ -1,4 +1,3 @@
-
 #-----------------------------------------------------------------------
 #      	Image Cryptogrophy v0.2
 # 		Generates encryption keys from image data as seed
@@ -24,7 +23,7 @@ except:
 	cam = "Failed"
 	
 intCount = 0
-intPwdLength = 32*10
+intPwdLength = 32
 
 strPassword = ""
 strFileName = "./Results/Result{0}.png".format(datetime.now())
