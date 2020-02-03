@@ -2,17 +2,16 @@
 # -*- coding: utf-8 -*-
 
 #-----------------------------------------------------------------------
-#      	Image feature Cryptogrophy v0.1
+#      	Image feature Cryptogrophy v0.2
 # 		Generates encryption keys from image data as seed
 # 		for increased randomness using Features
 #		inputs:
 #			intLength is the length of the cryptokey, standard length is 32
 #			intCamLoc is the camera to use, default is 0
 #		started: 31/01/2020 updated:
-#		comp tested: 31/01/2020
+#		comp tested: 03/02/2020
 #		Author: AH
 #-----------------------------------------------------------------------
-
 def FeatureCrypt(intLength = 32, intCamLoc = 0):
 	#imports
 	try:
@@ -82,15 +81,15 @@ def FeatureCrypt(intLength = 32, intCamLoc = 0):
 	return strPassword
 
 #-----------------------------------------------------------------------
-#      	Image Average Cryptogrophy v0.1
+#      	Image Average Cryptogrophy v0.2
 # 		Generates encryption keys from image data as seed
 # 		for increased randomnessusing average intensity 
 #		of image
 #		inputs:
 #			intLength is the length of the cryptokey, standard length is 32
 #			intCamLoc is the camera to use, default is 0
-#		started: 31/01/2020 updated:
-#		comp tested: 31/01/2020
+#		started: 31/01/2020 updated: 03/02/2020
+#		comp tested: 03/02/2020
 #		Author: AH
 #-----------------------------------------------------------------------
 
