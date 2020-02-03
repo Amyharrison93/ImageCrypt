@@ -5,7 +5,7 @@
     <ProjectGuid>fed3af43-c300-4b85-95f7-f8d8d5486457</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>TestScript.py</StartupFile>
+    <StartupFile>Test programs\mainTestScript.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,16 +23,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Functions\FeatureCrypt.py">
+    <Compile Include="ImageCrypt.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\AverageCrypt.py">
+    <Compile Include="Test programs\LegacyCrypt.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TestScript.py" />
+    <Compile Include="Test programs\mainTestScript.py" />
+    <Compile Include="Test programs\functionTestScript.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Functions\" />
+    <Folder Include="Test programs\" />
     <Folder Include="Results\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

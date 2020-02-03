@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 #-----------------------------------------------------------------------
-#      	Image Cryptogrophy v0.2
+#      	Image Cryptogrophy v0.3
 # 		Generates encryption keys from image data as seed
 # 		for increased random
-#		started: 28/01/2020 updated: 31/01/2020 
+#		started: 28/01/2020 updated: 03/02/2020 
 #		comp tested: 31/01/2020
 #		Author: AH
 #-----------------------------------------------------------------------
@@ -86,7 +86,7 @@ for intCount in range(0, intPwdLength):
 	arryFastStdDev[intCount] = intCh0
 	arryOrbStdDev[intCount] = intCh1
 	arryBlobStdDev[intCount] = intCh2
-	
+
 print(datetime.now())
 
 flCh0Deviation = np.std(arryFastStdDev)
